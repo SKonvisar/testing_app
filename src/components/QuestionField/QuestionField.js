@@ -21,11 +21,20 @@ class QuestionField extends React.Component {
             return item.state.isRight
         });
         console.log(rightAnswers);
+        if (this.arr.some((item)=>{
+            if (item.state.value == false) {
+                return true;
+            } else {
+                return false;
+            }
+        })) {
+            alert("Не все заполнены");
+            this.props.submit(rightAnswers.length);
+        } else {
         this.props.submit(rightAnswers.length);
+        }
     }
-    comunicate(node){
-        this.arr.push(node);
-    }
+    
     render() {
         console.log(this.props.questionsList.length);
         console.log(this.state.numOfQuestion);

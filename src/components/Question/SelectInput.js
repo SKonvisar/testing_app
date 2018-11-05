@@ -17,12 +17,13 @@ class SelectInput extends React.Component {
         this.setState({
             value: e.target.value
         })
+        this.props.comunicate(null, e.target.value);
         e.target.value == this.state.rightAnswer ? this.setState({right: true}) : this.setState({right: false});
     }
     componentDidUpdate(prevProps, prevState) {
         if (prevState.right != this.state.right && this.state.right) {
-            this.props.comunicate(true)
-        }
+            this.props.comunicate(true,this.state.value);
+        } 
     }
     render() {
         console.log(this.state.right);

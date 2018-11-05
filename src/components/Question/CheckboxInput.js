@@ -22,7 +22,6 @@ class CheckboxInput extends React.Component {
         this.handleChange = this.handleChange.bind(this);
     }
     handleChange(e) {
-        console.log(this.arr);
         if (this.arr.some((item) => {return item == e.target.name})){
             this.arr = this.arr.filter((item) => {
                 return !(item == e.target.name);    
@@ -33,6 +32,7 @@ class CheckboxInput extends React.Component {
         this.setState({
             isChecked: this.arr
         })
+        this.props.comunicate(null,Boolean(this.arr.length))
         function compare(a1, a2) {
             return a1.length == a2.length && a1.every((v,i)=>v === a2[i])
         }
@@ -49,7 +49,7 @@ class CheckboxInput extends React.Component {
     }
     componentDidUpdate(prevProps, prevState) {
         if (prevState.right != this.state.right && this.state.right) {
-            this.props.comunicate(true)
+            this.props.comunicate(true,Boolean(this.arr.length))
         }
     }
     render() {

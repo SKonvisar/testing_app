@@ -9,13 +9,21 @@ class Question extends React.Component {
         super(props);
         this.state = {
             isRight: false,
-            id: this.props.id
+            id: this.props.id,
+            value: null
         }
     }
-    isRight(bool){
-        this.setState({
-            isRight: bool
-        })
+    isRight(bool, value){
+        if (bool == null) {
+            this.setState({
+                value: value
+            })    
+        } else {
+            this.setState({
+                isRight: bool,
+                value: value
+            })
+        }
     }
     writeArr(id, isRight){
         let arr = [];

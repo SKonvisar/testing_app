@@ -15,11 +15,15 @@ class TextInput extends React.Component {
     }
     handleChange(e){
         e.target.value == this.state.rightAnswer ? this.setState({right: true}) : this.setState({right: false});
+        this.setState({
+            value: e.target.value
+        })
+        this.props.comunicate(null, e.target.value);
     }
     
     componentDidUpdate(prevProps, prevState) {
         if (prevState.right != this.state.right && this.state.right) {
-            this.props.comunicate(true);
+            this.props.comunicate(true, this.state.value);
         } 
     }
 
