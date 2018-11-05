@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Heading from './components/Heading/Heading';
 import QuestionField from './components/QuestionField/QuestionField';
+import Result from './components/Results/Result';
 
 const tests = [
     {
@@ -94,6 +95,28 @@ const tests = [
                         isRight: false
                     }
                 ]
+            },
+            {
+                title: "Five question?",
+                inputType: "TEXT",
+                answers: [
+                    {
+                        text: "first answer",
+                        isRight: false
+                    },
+                    {
+                        text: "second answer",
+                        isRight: true
+                    },
+                    {
+                        text: "third answer",
+                        isRight: false
+                    },
+                    {
+                        text: "four answer",
+                        isRight: false
+                    }
+                ]
             }
         ]
     }
@@ -104,15 +127,41 @@ class App extends React.Component {
         super(props);
         this.state = {
             test: tests[0],
+            submited: false,
+            rightAnswer: 0,                    
         }
     }
+    submit(n){
+        this.setState({
+            submited: true,
+            rightAnswer: n
+        })
+    }
+    unSubmit(){
+        this.setState({
+            submited: false,
+            rightAnswer: 0
+        })
+    }
     render() {
-        console.log(this.state.i);
-        return ( 
-            <div>
-                <Heading theme={this.state.test.topic} />
-                <QuestionField questionsList={this.state.test.questions} />
-            </div>
+        let renderEl;
+        if (!this.state.submited){
+            renderEl = (
+                <div>
+                    <Heading topic={this.state.test.topic} />
+                    <QuestionField  questionsList={this.state.test.questions}
+                                    submit={this.submit.bind(this)}
+                     />
+                </div>
+            )
+        } else {
+            renderEl = <Result  rightAnswer={this.state.rightAnswer} 
+                                counQuestion={this.state.test.questions.length}
+                                unSubmit={this.unSubmit.bind(this)}        
+                        />
+        }
+        return (
+            renderEl
         )
     }
 }

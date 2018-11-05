@@ -6,7 +6,7 @@ class Heading extends React.Component {
     }
     render() {
         return (
-            <h2>Тест на тему: {this.props.theme}</h2>
+            <h2>Тест на тему: {this.props.topic}</h2>
         )
     }
 }

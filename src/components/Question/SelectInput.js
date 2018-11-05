@@ -8,7 +8,8 @@ class SelectInput extends React.Component {
         })
         this.state = {
             value: this.props.answers[0].text,
-            right: right[0].text 
+            rightAnswer: right[0].text,
+            right: false 
         }
         this.handleChange = this.handleChange.bind(this);
     }
@@ -16,14 +17,20 @@ class SelectInput extends React.Component {
         this.setState({
             value: e.target.value
         })
+        e.target.value == this.state.rightAnswer ? this.setState({right: true}) : this.setState({right: false});
+    }
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.right != this.state.right && this.state.right) {
+            this.props.comunicate(true)
+        }
     }
     render() {
-        console.log(this.state.right)
+        console.log(this.state.right);
         return (
             <label htmlFor="12">
                 <select name="select" id="12" value={this.state.value} onChange={this.handleChange}>
-                    {this.props.answers.map((answer) => 
-                        <option value={answer.text}>{answer.text}</option>
+                    {this.props.answers.map((answer,id) => 
+                        <option value={answer.text} key={`option-${id}`}>{answer.text}</option>
                     )}
                 </select>
             </label>
