@@ -1,4 +1,5 @@
 import React from 'react';
+import "./TextInput.css";
 
 class TextInput extends React.Component {
     constructor(props){
@@ -31,10 +32,14 @@ class TextInput extends React.Component {
         //console.log(this.props.answers);
         console.log(this.state.right, "input");
         return (
-            <label htmlFor={this.props.id}>
+            <label htmlFor={this.props.id} className="text-input">
                 Write right answer: 
                 <br />
-                <input type="text" id={this.props.id} onBlur={this.handleChange}/>
+                <input  type="text"
+                        id={this.props.id} 
+                        onBlur={this.handleChange}
+                        className="form-control"
+                />
                 <br />
                 Answers option:
                 <ul>

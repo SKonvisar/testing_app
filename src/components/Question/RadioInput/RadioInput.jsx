@@ -1,4 +1,5 @@
 import React from 'react';
+import "./Radioinput.css";
 
 class RadioInput extends React.Component {
     constructor(props){
@@ -29,11 +30,16 @@ class RadioInput extends React.Component {
     render() {
         console.log(this.state.right);
         return (
-            <div>
-                Select right answer: <br />
+            <div className="radio-input">
+                <span>Select right answer:</span> 
+                <br />
                 {this.props.answers.map((answer,id) =>
                     <label htmlFor={id}>
-                        <input type="radio" value={answer.text} name={id} id={id} onChange = {this.handleOptionChanged} checked={this.state.selectedOption === answer.text} key={`radio-${id}`}/>
+                        <input  type="radio" 
+                                value={answer.text} 
+                                name={id} id={id} 
+                                onChange = {this.handleOptionChanged} checked={this.state.selectedOption === answer.text} 
+                                key={`radio-${id}`}/>
                         {answer.text}
                     </label>
                 )}

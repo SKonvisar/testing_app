@@ -1,4 +1,5 @@
 import React from 'react';
+import './Heading.css'
 
 class Heading extends React.Component {
     constructor(props) {
@@ -6,7 +7,7 @@ class Heading extends React.Component {
     }
     render() {
         return (
-            <h2>Тест на тему: {this.props.topic}</h2>
+            <h2 className="heading">Тест на тему: {this.props.topic}</h2>
         )
     }
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import "./SelectInput.css";
 
 class SelectInput extends React.Component {
     constructor(props){
@@ -28,8 +29,12 @@ class SelectInput extends React.Component {
     render() {
         console.log(this.state.right);
         return (
-            <label htmlFor="12">
-                <select name="select" id="12" value={this.state.value} onChange={this.handleChange}>
+            <label className="select-input">
+                <select name="select" 
+                        value={this.state.value} 
+                        onChange={this.handleChange}
+                        className="form-control"
+                >
                     {this.props.answers.map((answer,id) => 
                         <option value={answer.text} key={`option-${id}`}>{answer.text}</option>
                     )}

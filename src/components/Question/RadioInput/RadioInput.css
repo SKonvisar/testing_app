@@ -1,0 +1,11 @@
+.radio-input label{
+    width: 100%;
+}
+.radio-input span {
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.radio-input label input{
+    margin-right: 15px;
+}

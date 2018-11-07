@@ -1,4 +1,5 @@
 import React from 'react';
+import './CheckboxInput.css';
 
 class CheckboxInput extends React.Component {
     constructor(props){
@@ -54,7 +55,7 @@ class CheckboxInput extends React.Component {
     }
     render() {
         return (
-            <div>
+            <div className="checkbox-input">
                 {this.props.answers.map((answer,id) => 
                     <label>
                         <input 

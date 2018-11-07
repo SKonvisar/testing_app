@@ -1,43 +1,37 @@
 import React from 'react';
 import Question from '../Question/Question';
+import './QuestionsField.css';
 
 class QuestionField extends React.Component {
     constructor(props){
         super(props);
         this.arr = [];
         this.state = {
-            reRender: true
+            reRender: false
         };
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-    // getRightAnswers(answerObj, function) {
-    //     let obj = {id: id, isRight: isRight};
-    //     this.arr.push(obj);
-    // }
     handleSubmit(e){
         e.preventDefault();
-        console.log(this.arr);
         let rightAnswers = this.arr.filter((item) => {
             return item.state.isRight
         });
-        console.log(rightAnswers);
         if (this.arr.some((item)=>{
-            if (item.state.value == false) {
+            if (item.state.value == false || item.state.value == null) {
                 return true;
             } else {
                 return false;
             }
         })) {
-            alert("Не все заполнены");
-            this.props.submit(rightAnswers.length);
+            if (confirm("Не заполненые поля будут считаться неправильными. Уверены что хотите продолжить ?")) {
+                this.props.submit(rightAnswers.length);
+            }
+            return; 
         } else {
         this.props.submit(rightAnswers.length);
         }
     }
-    
     render() {
-        console.log(this.props.questionsList.length);
-        console.log(this.state.numOfQuestion);
         return (
             <form onSubmit={this.handleSubmit}>
                 {this.props.questionsList.map((question, id) => 
@@ -50,10 +44,16 @@ class QuestionField extends React.Component {
                                     this.questionNode = node;
                                     this.arr.push(this.questionNode);
                                 }}
-                            
                     />
                 )}
-                <input type="submit" value="Send"/>
+                <div className="row justify-content-center">
+                    <div className="col-12 col-md-6 button">
+                        <input  type="submit"
+                                value="Send"
+                                className="btn btn-success btn-lg"
+                        />
+                    </div>
+                </div>
             </form>
         )
     }
